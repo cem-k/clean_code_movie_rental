@@ -11,10 +11,12 @@ def calculate_rental_amount(price_code, days_rented):
             rental_amount += (days_rented - 2) * 1.5
     elif price_code == NEW_RELEASE_MOVIE:
         rental_amount += days_rented * 3
-    else:
+    elif price_code == CHILDREN_MOVIE:
         rental_amount += 1.5
         if days_rented > 3:
             rental_amount += (days_rented - 3) * 1.5
+    else:
+        return 0
 
     return rental_amount
 
