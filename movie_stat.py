@@ -1,11 +1,15 @@
+REGULAR_MOVIE = 0
+NEW_RELEASE_MOVIE = 1
+CHILDREN_MOVIE = 2
+
 def calculate_rental_amount(price_code, days_rented):
     rental_amount = 0
     
-    if price_code == 0:
+    if price_code == REGULAR_MOVIE:
         rental_amount += 2
         if days_rented > 2:
             rental_amount += (days_rented - 2) * 1.5
-    elif price_code == 1:
+    elif price_code == NEW_RELEASE_MOVIE:
         rental_amount += days_rented * 3
     else:
         rental_amount += 1.5
@@ -17,7 +21,7 @@ def calculate_rental_amount(price_code, days_rented):
 def calculate_frequent_renter_points(price_code, days_rented):
     points = 1
 
-    if price_code == 1 and days_rented > 1:
+    if price_code == NEW_RELEASE_MOVIE and days_rented > 1:
         points += 1
     
     return points
