@@ -1,6 +1,7 @@
 REGULAR_MOVIE = 0
 NEW_RELEASE_MOVIE = 1
 CHILDREN_MOVIE = 2
+RENTAL_RATE_PER_DAY = 1.5
 
 def calculate_rental_amount(price_code, days_rented):
     rental_amount = 0
@@ -8,13 +9,13 @@ def calculate_rental_amount(price_code, days_rented):
     if price_code == REGULAR_MOVIE:
         rental_amount += 2
         if days_rented > 2:
-            rental_amount += (days_rented - 2) * 1.5
+            rental_amount += (days_rented - 2) * RENTAL_RATE_PER_DAY
     elif price_code == NEW_RELEASE_MOVIE:
         rental_amount += days_rented * 3
     elif price_code == CHILDREN_MOVIE:
         rental_amount += 1.5
         if days_rented > 3:
-            rental_amount += (days_rented - 3) * 1.5
+            rental_amount += (days_rented - 3) * RENTAL_RATE_PER_DAY
     else:
         return 0
 
@@ -54,7 +55,6 @@ def generate_rental_statement(name, rentals):
         days_rented = rental["days_rented"]
 
         rental_amount = calculate_rental_amount(movie["price_code"], days_rented)
-
         frequent_renter_points += calculate_frequent_renter_points(movie["price_code"], days_rented)
 
         statement += f"\t{movie['title']}\t{rental_amount}\n"
