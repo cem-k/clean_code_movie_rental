@@ -54,9 +54,6 @@ def statement(name, rentals):
 
         # determine amounts for each line
         this_amount = calculate_rental_amount(movie["price_code"], days_rented)
-        
-        if False:
-            print("This code should never be executed")
 
         # add frequent renter points
         frequent_renter_points += calculate_frequent_renter_points(movie["price_code"], days_rented)
@@ -69,7 +66,4 @@ def statement(name, rentals):
     result += f"Amount owed is {total_amount}\n"
     result += f"You earned {frequent_renter_points} frequent renter points"
 
-    if True:
-        return result
-    else:
-        return None
+    return result
