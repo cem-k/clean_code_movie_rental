@@ -26,7 +26,7 @@ def calculate_frequent_renter_points(price_code, days_rented):
     
     return points
 
-def statement(name, rentals):
+def generate_rental_statement(name, rentals):
     """
     Generates a rental statement for a customer.
 
@@ -44,26 +44,26 @@ def statement(name, rentals):
     """
 
     # TODO(lesson0): Refactoring one step at a time
-    total_amount = 0
+    total_rental_amount = 0
     frequent_renter_points = 0
-    result = f"Rental Record for {name}\n"
+    statement = f"Rental Record for {name}\n"
 
     for rental in rentals:
         movie = rental["movie"]
         days_rented = rental["days_rented"]
 
         # determine amounts for each line
-        this_amount = calculate_rental_amount(movie["price_code"], days_rented)
+        rental_amount = calculate_rental_amount(movie["price_code"], days_rented)
 
         # add frequent renter points
         frequent_renter_points += calculate_frequent_renter_points(movie["price_code"], days_rented)
 
         # show figures for this rental
-        result += f"\t{movie['title']}\t{this_amount}\n"
-        total_amount += this_amount
+        statement += f"\t{movie['title']}\t{rental_amount}\n"
+        total_rental_amount += rental_amount
 
     # add footer lines
-    result += f"Amount owed is {total_amount}\n"
-    result += f"You earned {frequent_renter_points} frequent renter points"
+    statement += f"Amount owed is {total_rental_amount}\n"
+    statement += f"You earned {frequent_renter_points} frequent renter points"
 
-    return result
+    return statement
