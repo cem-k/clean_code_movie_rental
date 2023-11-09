@@ -1,6 +1,7 @@
 REGULAR_MOVIE = 0
 NEW_RELEASE_MOVIE = 1
 CHILDREN_MOVIE = 2
+DUBBED_MOVIE = 3
 RENTAL_RATE_PER_DAY = 1.5
 
 def calculate_rental_amount(price_code, days_rented):
@@ -16,6 +17,8 @@ def calculate_rental_amount(price_code, days_rented):
         rental_amount += 1.5
         if days_rented > 3:
             rental_amount += (days_rented - 3) * RENTAL_RATE_PER_DAY
+    elif price_code == DUBBED_MOVIE:
+        rental_amount += 4
     else:
         return 0
 
@@ -38,7 +41,7 @@ def generate_rental_statement(name, rentals):
         rentals (list): A list of dictionaries, where each dictionary contains information about a rental:
             - 'movie': a dictionary with information about the movie:
                 - 'title': a string with the title of the movie.
-                - 'price_code': an integer representing the price code of the movie (0 = regular, 1 = new release, 2 = children).
+                - 'price_code': an integer representing the price code of the movie (0 = regular, 1 = new release, 2 = children, 3 = dubbed).
             - 'days_rented': an integer with the number of days the movie was rented for.
 
     Returns:

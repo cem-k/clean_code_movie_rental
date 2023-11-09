@@ -45,6 +45,28 @@ class TestRental(unittest.TestCase):
         expected_result = "Rental Record for John\n\tThe Lion King\t3.0\nAmount owed is 3.0\nYou earned 1 frequent renter points"
         self.assertEqual(generate_rental_statement("John", rentals), expected_result)
 
+    def test_dubbed_movie_rental_for_1_day(self):
+        rentals = [
+            {"movie": {"title": "Spiderman", "price_code": 3}, "days_rented": 1}
+        ]
+        expected_result = "Rental Record for John\n\tSpiderman\t4\nAmount owed is 4\nYou earned 1 frequent renter points"
+        self.assertEqual(generate_rental_statement("John", rentals), expected_result)
+
+    def test_dubbed_movie_rental_for_3_days(self):
+        rentals = [
+            {"movie": {"title": "The Dark Knight", "price_code": 3}, "days_rented": 3}
+        ]
+        expected_result = "Rental Record for John\n\tThe Dark Knight\t4\nAmount owed is 4\nYou earned 1 frequent renter points"
+        self.assertEqual(generate_rental_statement("John", rentals), expected_result)
+
+    def test_dubbed_and_regular_movie_rental_for_3_days(self):
+        rentals = [
+            {"movie": {"title": "Spiderman", "price_code": 3}, "days_rented": 3},
+            {"movie": {"title": "The Godfather", "price_code": 0}, "days_rented": 3}
+        ]
+        expected_result = "Rental Record for John\n\tSpiderman\t4\n\tThe Godfather\t3.5\nAmount owed is 7.5\nYou earned 2 frequent renter points"
+        self.assertEqual(generate_rental_statement("John", rentals), expected_result)
+
 
 if __name__ == "__main__":
     unittest.main()
